@@ -350,7 +350,7 @@ namespace RW_CustomPawnGeneration
 					return;
 
 				long age = pawn.ageTracker.AgeBiologicalTicks;
-				long min0 = pawn.kindDef.minGenerationAge;
+				long min0 = (long)(pawn.GetYoungestAdultStage()?.minAge ?? pawn.kindDef.minGenerationAge);
 				long min1 = HasMinAge ? MinAge : min0;
 				long max0 = (long)pawn.RaceProps.lifeExpectancy;
 				//long max0 = pawn.kindDef.maxGenerationAge;
@@ -359,6 +359,7 @@ namespace RW_CustomPawnGeneration
 				long len1 = max1 - min1;
 
 				if (AgeCurve)
+					//age = PseudoPreserveCurve(age, min0, min1, max1, len0, len1);
 					age = PseudoPreserveCurveV2(age, min0, min1, len0, len1);
 
 				min1 *= AGE;

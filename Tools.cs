@@ -71,5 +71,18 @@ namespace RW_CustomPawnGeneration
 
 			return next;
 		}
+
+		public static LifeStageAge GetYoungestAdultStage(this Pawn pawn)
+		{
+			foreach (LifeStageAge stage in pawn.RaceProps.lifeStageAges)
+			{
+				if (!stage.def.developmentalStage.Adult())
+					continue;
+
+				return stage;
+			}
+
+			return null;
+		}
 	}
 }
