@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -351,13 +352,14 @@ namespace RW_CustomPawnGeneration
 				long age = pawn.ageTracker.AgeBiologicalTicks;
 				long min0 = pawn.kindDef.minGenerationAge;
 				long min1 = HasMinAge ? MinAge : min0;
-				long max0 = pawn.kindDef.maxGenerationAge;
+				long max0 = (long)pawn.RaceProps.lifeExpectancy;
+				//long max0 = pawn.kindDef.maxGenerationAge;
 				long max1 = HasMaxAge ? MaxAge : max0;
 				long len0 = max0 - min0;
 				long len1 = max1 - min1;
 
 				if (AgeCurve)
-					age = PseudoPreserveCurve(age, min0, min1, max1, len0, len1);
+					age = PseudoPreserveCurveV2(age, min0, min1, len0, len1);
 
 				min1 *= AGE;
 				max1 *= AGE;
@@ -375,6 +377,7 @@ namespace RW_CustomPawnGeneration
 			}
 		}
 
+		[Obsolete("This uses `PawnKindDef.maxGenerationAge`, which is inaccurate.")]
 		public static long PseudoPreserveCurve
 			(long age,
 			long min0,
@@ -392,6 +395,16 @@ namespace RW_CustomPawnGeneration
 
 			return (age - min0 * AGE) / len0 * len1 * factor + min1 * AGE / 2L;
 		}
+
+		/// <summary>
+		/// Uses `RaceProperties.lifeExpectancy` to mimic a pawn's age curve.
+		/// </summary>
+		public static long PseudoPreserveCurveV2
+			(long age,
+			long min0,
+			long min1,
+			long len0,
+			long len1) => (age - min0 * AGE) / len0 * len1 + min1 * AGE;
 	}
 
 	[HarmonyPatch(typeof(PawnGenerator), "GenerateGenes")]
