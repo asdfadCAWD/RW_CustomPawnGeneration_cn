@@ -331,6 +331,11 @@ namespace RW_CustomPawnGeneration
 			if (pawn == null)
 				return;
 
+			long min0 = (long)(pawn.GetYoungestAdultStage()?.minAge ?? pawn.kindDef.minGenerationAge);
+
+			if (pawn.ageTracker.AgeBiologicalYears < min0)
+				return;
+
 			Settings.GetState(pawn, out Settings.State global, out Settings.State state);
 
 			bool HasMinAge = Settings.Bool(global, state, AgeWindow.HasMinAge);
@@ -350,7 +355,6 @@ namespace RW_CustomPawnGeneration
 					return;
 
 				long age = pawn.ageTracker.AgeBiologicalTicks;
-				long min0 = (long)(pawn.GetYoungestAdultStage()?.minAge ?? pawn.kindDef.minGenerationAge);
 				long min1 = HasMinAge ? MinAge : min0;
 				long max0 = (long)pawn.RaceProps.lifeExpectancy;
 				//long max0 = pawn.kindDef.maxGenerationAge;
