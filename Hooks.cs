@@ -33,7 +33,10 @@ namespace RW_CustomPawnGeneration
 			if (pawn == null)
 				return true;
 
-			if (!Settings.GBool(pawn, GenderWindow.UnforcedGender))
+			if (!Settings.GBool(
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific) ? pawn.kindDef.race : null,
+				GenderWindow.UnforcedGender
+			))
 				return true;
 
 			// Ignore limitations of being a mother (gender.)
@@ -60,7 +63,10 @@ namespace RW_CustomPawnGeneration
 			if (pawn == null)
 				return true;
 
-			if (!Settings.GBool(pawn, GenderWindow.UnforcedGender))
+			if (!Settings.GBool(
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific) ? pawn.kindDef.race : null,
+				GenderWindow.UnforcedGender
+			))
 				return true;
 
 			// Ignore limitations of being a father (gender.)
@@ -98,7 +104,10 @@ namespace RW_CustomPawnGeneration
 			if (__result != null)
 				return true;
 
-			if (!Settings.GBool(pawn, GenderWindow.UnforcedGender))
+			if (!Settings.GBool(
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific) ? pawn.kindDef.race : null,
+				GenderWindow.UnforcedGender
+			))
 				return true;
 
 			if (!pawn.RaceProps.IsFlesh)
@@ -156,7 +165,10 @@ namespace RW_CustomPawnGeneration
 			if (__result != null)
 				return true;
 
-			if (!Settings.GBool(pawn, GenderWindow.UnforcedGender))
+			if (!Settings.GBool(
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific) ? pawn.kindDef.race : null,
+				GenderWindow.UnforcedGender
+			))
 				return true;
 
 			if (!pawn.RaceProps.IsFlesh)
@@ -202,7 +214,12 @@ namespace RW_CustomPawnGeneration
 			if (___pawn == null)
 				return;
 
-			Settings.GetState(___pawn, out Settings.State global, out Settings.State state);
+			Settings.GetState(
+				___pawn,
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific),
+				out Settings.State global,
+				out Settings.State state
+			);
 
 			if (!Settings.Bool(global, state, AgeWindow.HasMaxAge))
 				return;
@@ -234,14 +251,27 @@ namespace RW_CustomPawnGeneration
 			);
 
 		[HarmonyPrefix]
-		public static void Patch(Pawn_AgeTracker __instance, Pawn ___pawn)
+		public static void Patch(
+			Pawn_AgeTracker __instance,
+			Pawn ___pawn
+		)
 		{
 			if (___pawn == null)
 				return;
 
-			Settings.GetState(___pawn, out Settings.State global, out Settings.State state);
+			Settings.GetState(
+				___pawn,
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific),
+				out Settings.State global,
+				out Settings.State state
+			);
 
-			int tick = Settings.Int(global, state, AgeWindow.AgeTick, Settings.IsGlobal(state, AgeWindow.HasAgeTick));
+			int tick = Settings.Int(
+				global,
+				state,
+				AgeWindow.AgeTick,
+				Settings.IsGlobal(state, AgeWindow.HasAgeTick)
+			);
 
 			if (tick == 0)
 				__instance.AgeBiologicalTicks--;
@@ -314,7 +344,11 @@ namespace RW_CustomPawnGeneration
 		[HarmonyPrefix]
 		public static void Prefix(Pawn pawn, PawnGenerationRequest request)
 		{
-			Settings.GetStateMale(request.KindDef.race, out Settings.State global, out Settings.State state);
+			Settings.GetStateMale(
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific) ? request.KindDef.race : null,
+				out Settings.State global,
+				out Settings.State state
+			);
 
 			if (!Settings.Bool(global, state, GenderWindow.OverrideGender))
 				return;
@@ -336,7 +370,12 @@ namespace RW_CustomPawnGeneration
 			if (pawn.ageTracker.AgeBiologicalYears < min0)
 				return;
 
-			Settings.GetState(pawn, out Settings.State global, out Settings.State state);
+			Settings.GetState(
+				pawn,
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific),
+				out Settings.State global,
+				out Settings.State state
+			);
 
 			bool HasMinAge = Settings.Bool(global, state, AgeWindow.HasMinAge);
 			bool HasMaxAge = Settings.Bool(global, state, AgeWindow.HasMaxAge);
@@ -555,7 +594,12 @@ namespace RW_CustomPawnGeneration
 
 			traitsPending.Remove(pawn);
 
-			Settings.GetState(pawn, out Settings.State global, out Settings.State state);
+			Settings.GetState(
+				pawn,
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific),
+				out Settings.State global,
+				out Settings.State state
+			);
 
 			bool OverrideTraits = Settings.Bool(global, state, TraitsWindow.OverrideTraits);
 
@@ -600,7 +644,12 @@ namespace RW_CustomPawnGeneration
 			if (!Patch_PawnGenerator_GenerateTraits.traitsPending.ContainsKey(___pawn))
 				return true;
 
-			Settings.GetState(___pawn, out Settings.State global, out Settings.State state);
+			Settings.GetState(
+				___pawn,
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific),
+				out Settings.State global,
+				out Settings.State state
+			);
 
 			if (!Settings.Bool(global, state, TraitsWindow.OverrideTraits))
 				return true;
@@ -717,7 +766,11 @@ namespace RW_CustomPawnGeneration
 			if (!request.KindDef.RaceProps.hasGenders)
 				return;
 
-			Settings.GetStateMale(request.KindDef.race, out Settings.State global, out Settings.State state);
+			Settings.GetStateMale(
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific) ? request.KindDef.race : null,
+				out Settings.State global,
+				out Settings.State state
+			);
 
 			if (!Settings.Bool(global, state, GenderWindow.OverrideGender))
 				return;
@@ -753,7 +806,12 @@ namespace RW_CustomPawnGeneration
 			if (__result == null)
 				return;
 
-			Settings.GetState(__result, out _, out Settings.State state);
+			Settings.GetState(
+				__result,
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific),
+				out _,
+				out Settings.State state
+			);
 
 			foreach (HediffDef def in DefDatabase<HediffDef>.AllDefs)
 			{

@@ -43,11 +43,23 @@ namespace RW_CustomPawnGeneration
 		/// <summary>
 		/// A bool value but has an option to redirect to the global config.
 		/// </summary>
-		public static bool Bool(Pawn pawn, string key)
+		public static bool Bool(
+			Pawn pawn,
+			bool useRaceSpecific,
+			string key
+		)
 		{
-			GetState(pawn, out State global, out State state);
+			GetState(
+				pawn,
+				useRaceSpecific,
+				out State global,
+				out State state
+			);
 
 			int value = state.Get(key);
+
+			if (state.global)
+				return value == 1;
 
 			if (value == 0)
 				return global.Get(key) == 1;
@@ -55,47 +67,60 @@ namespace RW_CustomPawnGeneration
 				return value == 2;
 		}
 
-		public static bool GBool(Pawn pawn, string key)
+		public static bool GBool(ThingDef race, string key)
 		{
-			GetStateMale(pawn, out State global, out State state);
+			GetStateMale(
+				race,
+				out State global,
+				out State state
+			);
+
 			return Bool(global, state, key);
 		}
 
-		public static bool Bool(State global, State state, string key)
+		public static bool Bool(
+			State global,
+			State state,
+			string key
+		)
 		{
 			int value = state.Get(key);
 
+			if (state.global)
+				return value == 1;
+
 			if (value == 0)
 				return global.Get(key) == 1;
-			else
-				return value == 2;
+
+			return value == 2;
 		}
 
-		public static int Int(State global, State state, string key, bool isGlobal)
-		{
-			if (isGlobal)
-				return global.Get(key);
-			else
-				return state.Get(key);
-		}
+		public static int Int(
+			State global,
+			State state,
+			string key,
+			bool isGlobal
+		) =>
+			isGlobal ? global.Get(key) : state.Get(key);
 
-		public static bool Bool(State global, State state, string key, bool isGlobal)
-		{
-			return Int(global, state, key, isGlobal) == 1;
-		}
+		public static bool Bool(
+			State global,
+			State state,
+			string key,
+			bool isGlobal
+		) =>
+			Int(global, state, key, isGlobal) == 1;
 
 		/// <summary>
 		/// Configuration state representing the male settings.
 		/// If `SeparateGender` is not enabled,
 		/// female configuration points to the male configuration.
 		/// </summary>
-		public static void GetStateMale(Pawn pawn, out State global, out State state)
-		{
-			global = State.GLOBAL;
-			state = new State(pawn.kindDef.race);
-		}
-
-		public static void GetStateMale(ThingDef race, out State global, out State state)
+		public static void GetStateMale(
+			ThingDef race,
+			out State global,
+			out State state
+		)
 		{
 			global = State.GLOBAL;
 			state = new State(race);
@@ -104,22 +129,47 @@ namespace RW_CustomPawnGeneration
 		/// <summary>
 		/// Automatically points to the female configuration state if `SeparateGender` is enabled.
 		/// </summary>
-		public static void GetState(Pawn pawn, out State global, out State state)
+		public static void GetState(
+			Pawn pawn,
+			bool useRaceSpecific,
+			out State global,
+			out State state
+		)
 		{
-			GetStateMale(pawn, out global, out state);
+			GetStateMale(
+				useRaceSpecific ? pawn.kindDef.race : null,
+				out global,
+				out state
+			);
 
-			if (pawn.RaceProps.hasGenders &&
-				pawn.gender == Gender.Female &&
-				Bool(global, state, GenderWindow.SeparateGender))
-			{
-				global = State.FEMALE;
-				state = new State(pawn.kindDef.race, pawn.gender);
-			}
+			if (!pawn.RaceProps.hasGenders)
+				return;
+
+			if (pawn.gender != Gender.Female)
+				return;
+
+			if (!Bool(global, state, GenderWindow.SeparateGender))
+				return;
+
+			global = State.FEMALE;
+			state = new State(
+				useRaceSpecific ? pawn.kindDef.race : null,
+				pawn.gender
+			);
 		}
 
-		public static void GetState(ThingDef race, Gender? gender, out State global, out State state)
+		public static void GetState(
+			ThingDef race,
+			Gender? gender,
+			out State global,
+			out State state
+		)
 		{
-			GetStateMale(race, out global, out state);
+			GetStateMale(
+				race,
+				out global,
+				out state
+			);
 
 			if (gender != null &&
 				gender == Gender.Female &&

@@ -7,7 +7,16 @@ namespace RW_CustomPawnGeneration
 	public partial class Settings
 	{
 		public const string DESCRIPTION_ADVANCED_MODE =
-			"Shows individual settings for each race.";
+			"Shows individual settings for each race. " +
+			"Disabling this does not prevent race-specific options " +
+			"(see \"Use Race Specific Options\".)";
+		public const string DESCRIPTION_RESET_ALL =
+			"This will restore all the default values of the settings of each race " +
+			"(including [Global Config]) and cannot be undone. " +
+			"Are you sure?";
+		public const string DESCRIPTION_USE_RACE_SPECIFIC =
+			"If enabled, race-specific options will be used " +
+			"(disabling the \"Advanced Settings\" does not prevent this.)";
 		public const string DESCRIPTION_CUSTOM_AGING =
 			"When enabled, allows pawns to have a custom aging speed (in game ticks.) " +
 			"This option may slow down your game significiantly, particularly on larger colonies. " +
@@ -26,18 +35,21 @@ namespace RW_CustomPawnGeneration
 			"Requires a restart to take effect.";
 
 		public const string RESET = "Reset";
+		public const string RESET_ALL = "Reset All";
 		public const string YES = "Yes";
 		public const string NO = "No";
 		public const string COPY_TO = "Copy to...";
 		public const string EDIT = "Edit";	
 		public const string SHOW_CONFIG = "Show Config";
 		public const string ADVANCED_MODE = "Advanced Settings";
+		public const string USE_RACE_SPECIFIC = "Use Race Specific Options";
 		public const string CUSTOM_AGING = "Enable Custom Aging Ticks";
 		public const string UNGENDERED_PARENT = "Remove Parent Gender Restrictions";
 		public const string GLOBAL_CONFIG = "[Global Config]";
 		public const string SEARCH = "Search ";
 
 		public const string AdvancedMode = "AdvancedMode";
+		public const string UseRaceSpecific = "UseRaceSpecific";
 		public const string CustomAging = "CustomAging";
 		public const string UngenderedParent = "UngenderedParent";
 
@@ -123,6 +135,7 @@ namespace RW_CustomPawnGeneration
 			gui.ColumnWidth = width * 0.5f;
 			{
 				Tools.Bool(gui, State.GLOBAL, AdvancedMode, ADVANCED_MODE, DESCRIPTION_ADVANCED_MODE);
+				Tools.Bool(gui, State.GLOBAL, UseRaceSpecific, USE_RACE_SPECIFIC, DESCRIPTION_USE_RACE_SPECIFIC);
 
 				bool _CustomAging = Tools.Bool(
 					gui,
@@ -189,6 +202,20 @@ namespace RW_CustomPawnGeneration
 
 
 			// Advanced Settings
+
+			if (gui.ButtonText(RESET_ALL))
+				Find.WindowStack.Add(new Dialog_MessageBox(
+					DESCRIPTION_RESET_ALL,
+					YES,
+					() =>
+					{
+						new State(null).Clear();
+
+						foreach (ThingDef race in races)
+							new State(race).Clear();
+					},
+					NO
+				));
 
 			Search_Buffer = gui.TextEntryLabeled(SEARCH, Search_Buffer);
 
