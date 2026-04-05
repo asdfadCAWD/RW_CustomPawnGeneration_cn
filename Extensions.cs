@@ -7,20 +7,21 @@ namespace RW_CustomPawnGeneration
 {
 	public static class Extensions
 	{
-		public static bool CPGEnabled
-			(this BodyTypeDef body_type,
+		public static bool CPGEnabled(
+			this BodyTypeDef bodyType,
 			Settings.State global,
 			Settings.State state,
-			bool is_global)
+			bool isGlobal
+		)
 		{
-			if (body_type == null)
+			if (bodyType == null)
 				return false;
 
 			return Settings.Bool(
 				global,
 				state,
-				$"{BodyWindow.FilterBody}|{body_type.defName}",
-				is_global
+				$"{BodyWindow.FilterBody}|{bodyType.defName}",
+				isGlobal
 			);
 		}
 
@@ -30,7 +31,12 @@ namespace RW_CustomPawnGeneration
 				// Biotech stuff.
 				return;
 
-			Settings.GetState(pawn, out Settings.State global, out Settings.State state);
+			Settings.GetState(
+				pawn,
+				Settings.State.GLOBAL.Bool(Settings.UseRaceSpecific),
+				out Settings.State global,
+				out Settings.State state
+			);
 
 			if (!Settings.Bool(global, state, BodyWindow.FilterBody))
 				return;
@@ -41,7 +47,11 @@ namespace RW_CustomPawnGeneration
 				// Current body type is good.
 				return;
 
-			BodyTypeDef type = pawn.GetRandomBodyType(global, state, isGlobal);
+			BodyTypeDef type = pawn.GetRandomBodyType(
+				global,
+				state,
+				isGlobal
+			);
 
 			if (type != null)
 			{

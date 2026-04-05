@@ -16,6 +16,7 @@ namespace RW_CustomPawnGeneration
 		{
 			// Initialize default settings.
 
+			Settings.GlobalIntDefaults[Settings.UseRaceSpecific] = 1;
 			Settings.GlobalIntDefaults[GenderWindow.GenderSlider] = 50;
 			Settings.LocalIntDefaults[GenderWindow.GenderSlider] = 50;
 
