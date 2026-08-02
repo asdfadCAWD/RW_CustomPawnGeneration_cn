@@ -12,7 +12,7 @@ namespace RW_CustomPawnGeneration
 
 		public override string SettingsCategory()
 		{
-			return "Custom Pawn Generation";
+			return "自定义角色生成";
 		}
 
 		public override void DoSettingsWindowContents(Rect inRect)

@@ -7,46 +7,45 @@ namespace RW_CustomPawnGeneration
 	public partial class Settings
 	{
 		public const string DESCRIPTION_ADVANCED_MODE =
-			"Shows individual settings for each race. " +
-			"Disabling this does not prevent race-specific options " +
-			"(see \"Use Race Specific Options\".)";
+			"显示每个种族的单独设置。" +
+			"禁用此选项不会阻止种族特定选项" +
+			"（参见\"使用种族特定选项\"。）";
 		public const string DESCRIPTION_RESET_ALL =
-			"This will restore all the default values of the settings of each race " +
-			"(including [Global Config]) and cannot be undone. " +
-			"Are you sure?";
+			"这将恢复所有种族设置的所有默认值" +
+			"（包括[全局配置]），且无法撤销。" +
+			"确定要这样做吗？";
 		public const string DESCRIPTION_USE_RACE_SPECIFIC =
-			"If enabled, race-specific options will be used " +
-			"(disabling the \"Advanced Settings\" does not prevent this.)";
+			"启用后，将使用种族特定选项" +
+			"（禁用\"高级设置\"不会阻止此功能。）";
 		public const string DESCRIPTION_CUSTOM_AGING =
-			"When enabled, allows pawns to have a custom aging speed (in game ticks.) " +
-			"This option may slow down your game significiantly, particularly on larger colonies. " +
-			"This does not affect other age-related options.\n" +
-			"Requires a restart to take effect.";
+			"启用后，允许角色拥有自定义的年龄增长速度（以游戏刻为单位）。" +
+			"此选项可能会显著降低游戏性能，特别是在规模较大的殖民地中。" +
+			"不影响其他年龄相关选项。\n" +
+			"需要重启游戏才能生效。";
 		public const string DESCRIPTION_GLOBAL_CONFIG =
-			"All races that do not have any modified settings or " +
-			"uses the [Use Global Config] option will refer to this instead. " +
-			"Some options will only be applied when necessary (body types for humanoid races only, etc.)";
+			"所有未修改任何设置或" +
+			"使用了[使用全局配置]选项的种族将引用此配置。" +
+			"部分选项仅在必要时才会生效（如体型仅适用于类人种族等）。";
 		public const string DESCRIPTION_UNGENDERED_PARENT =
-			"When enabled, all pawns can either be a mother or father, " +
-			"regardless of gender.\n" +
-			"Some have reported this to cause lag, " +
-			"possibly from a mod incompatibility.\n" +
-			"If this causes lag for you, please disable this.\n" +
-			"Requires a restart to take effect.";
+			"启用后，所有角色无论性别都可以成为母亲或父亲。" +
+			"\n有玩家反馈这可能导致卡顿，" +
+			"可能是模组不兼容导致。" +
+			"\n如果这对你造成了卡顿，请禁用此选项。" +
+			"\n需要重启游戏才能生效。";
 
-		public const string RESET = "Reset";
-		public const string RESET_ALL = "Reset All";
-		public const string YES = "Yes";
-		public const string NO = "No";
-		public const string COPY_TO = "Copy to...";
-		public const string EDIT = "Edit";	
-		public const string SHOW_CONFIG = "Show Config";
-		public const string ADVANCED_MODE = "Advanced Settings";
-		public const string USE_RACE_SPECIFIC = "Use Race Specific Options";
-		public const string CUSTOM_AGING = "Enable Custom Aging Ticks";
-		public const string UNGENDERED_PARENT = "Remove Parent Gender Restrictions";
-		public const string GLOBAL_CONFIG = "[Global Config]";
-		public const string SEARCH = "Search ";
+		public const string RESET = "重置";
+		public const string RESET_ALL = "全部重置";
+		public const string YES = "是";
+		public const string NO = "否";
+		public const string COPY_TO = "复制到...";
+		public const string EDIT = "编辑";	
+		public const string SHOW_CONFIG = "显示配置";
+		public const string ADVANCED_MODE = "高级设置";
+		public const string USE_RACE_SPECIFIC = "使用种族特定选项";
+		public const string CUSTOM_AGING = "启用自定义年龄刻";
+		public const string UNGENDERED_PARENT = "移除父母性别限制";
+		public const string GLOBAL_CONFIG = "[全局配置]";
+		public const string SEARCH = "搜索 ";
 
 		public const string AdvancedMode = "AdvancedMode";
 		public const string UseRaceSpecific = "UseRaceSpecific";
@@ -63,7 +62,7 @@ namespace RW_CustomPawnGeneration
 		public static List<ThingDef> races = null;
 
 		public static string HEADER_RESET(string v) =>
-			$"This will restore all the default values to the '{v}' settings and cannot be undone. Are you sure?";
+			$"这将恢复'{v}'设置的所有默认值，且无法撤销。确定要这样做吗？";
 
 		public static void Draw_Root_Race_Reset(ThingDef race)
 		{
