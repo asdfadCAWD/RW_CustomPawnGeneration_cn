@@ -7,7 +7,7 @@ namespace RW_CustomPawnGeneration
 	public class ComboWindow : Window
 	{
 		public const string HEADER_TIP =
-			"Hover over the header for the description.";
+			"将鼠标悬停在标题上可查看描述。";
 
 		public Action<int> callback = null;
 		public string header = "";

@@ -6,36 +6,36 @@ namespace RW_CustomPawnGeneration
 	public class AgeWindow : BaseWindow
 	{
 		public const string DESCRIPTION_AGE_CURVE =
-			"If enabled, this will attempt to translate a pawn's current age " +
-			"to the new age limit. This may not be accurate but it would " +
-			"generate a similar effect with the vanilla age variation. " +
-			"Disabling this will only clamp the pawn's age.";
+			"启用后，将尝试将角色当前年龄" +
+			"转换到新的年龄限制。这可能不够精确，但会" +
+			"产生与原版年龄变化类似的效果。" +
+			"禁用此选项则只限制角色的年龄。";
 		public const string DESCRIPTION_HAS_MIN_AGE =
-			"If enabled, this will make sure all pawns " +
-			"can't be below a certain age. " +
-			"This will also affect pregnancy mods, " +
-			"meaning newborn babies will start at the minimum age.";
+			"启用后，将确保所有角色" +
+			"无法低于某个年龄。" +
+			"这也会影响怀孕模组，" +
+			"意味着新生婴儿将从最低年龄开始。";
 		public const string DESCRIPTION_MIN_AGE_SOFT =
-			"If enabled, pawns being generated below " +
-			"the minimum age will not be changed (e.g. baby pawns).";
+			"启用后，低于最低年龄生成的" +
+			"角色将不会被更改（例如婴儿角色）。";
 		public const string DESCRIPTION_HAS_MAX_AGE =
-			"If enabled, this will make sure all pawns " +
-			"can't be above a certain age.";
+			"启用后，将确保所有角色" +
+			"无法高于某个年龄。";
 		public const string DESCRIPTION_MAX_AGE_CHRONO =
-			"If enabled, this will increase the pawn's chronological age " +
-			"on every birthday if exceeding the maximum age.";
+			"启用后，如果角色的生物年龄超过了最高年龄，" +
+			"每次生日时将增加其历法年龄。";
 		public const string DESCRIPTION_HAS_AGE_TICK =
-			"If enabled, allows you to change how fast the pawns age.";
+			"启用后，允许你更改角色的年龄增长速度。";
 
-		public const string AGE_CURVE = "Preserve Age Curve";
-		public const string HAS_MIN_AGE = "Has Minimum Age";
-		public const string MIN_AGE_SOFT = "Do Not Affect Pawns Below Minimum Age";
-		public const string MIN_AGE = "Minimum Age ";
-		public const string HAS_MAX_AGE = "Has Maximum Age";
-		public const string MAX_AGE_CHRONO = "Add Excess Biological Age as Chronological Age";
-		public const string MAX_AGE = "Maximum Age ";
-		public const string HAS_AGE_TICK = "Override Age Tick";
-		public const string AGE_TICK = "Aging Tick Speed [Default: 1] ";
+		public const string AGE_CURVE = "保持年龄曲线";
+		public const string HAS_MIN_AGE = "启用最低年龄";
+		public const string MIN_AGE_SOFT = "不影响低于最低年龄的角色";
+		public const string MIN_AGE = "最低年龄 ";
+		public const string HAS_MAX_AGE = "启用最高年龄";
+		public const string MAX_AGE_CHRONO = "将超出的生物年龄添加为历法年龄";
+		public const string MAX_AGE = "最高年龄 ";
+		public const string HAS_AGE_TICK = "覆盖年龄刻";
+		public const string AGE_TICK = "年龄刻速度 [默认: 1] ";
 
 		public const string AgeCurve = "AgeCurve";
 		public const string HasMinAge = "HasMinAge";

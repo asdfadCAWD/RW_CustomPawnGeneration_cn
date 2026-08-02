@@ -9,27 +9,27 @@ namespace RW_CustomPawnGeneration
 	{
 		public static string[] COMBO_TRAITS = new string[]
 		{
-			"Normal",
-			"Blocked",
-			"Forced"
+			"正常",
+			"已禁用",
+			"强制"
 		};
 
 		public const string DESCRIPTION_TRAITS_BLOCKED =
-			"* If a pawn rolls for a blocked/forced trait, it will re-roll again.\n" +
-			"* The game may spam a lot of '[Pawn] already has [Trait]' messages in the console.\n" +
-			"* The forced traits are added after generating traits, " +
-			"which may exceed max traits.\n" +
-			"* You can force the same trait with varying degrees.\n" +
-			"WARNING: Blocking/Forcing majority of the traits will set the game in a permanent loop, " +
-			"making you unable to play! Try to only block/force less than half of the traits.";
+			"* 如果角色骰到了已禁用/强制的特质，将重新掷骰。\n" +
+			"* 游戏可能会在控制台中输出大量 '[角色] 已拥有 [特质]' 的消息。\n" +
+			"* 强制的特质会在生成特质之后添加，" +
+			"可能超过最大特质数量。\n" +
+			"* 你可以强制相同特质的不同等级。\n" +
+			"警告：禁用/强制大多数特质会导致游戏陷入永久循环，" +
+			"使你无法正常游玩！请尽量只禁用/强制少于一半的特质。";
 		public const string DESCRIPTION_OVERRIDE_TRAITS =
-			"Allows blocking traits from appearing in pawns and " +
-			"forcing traits to be distributed to all pawns. " +
-			"Only applies to humans.";
+			"允许阻止特质出现在角色身上，" +
+			"以及强制所有角色分配某些特质。" +
+			"仅适用于人类。";
 		public const string DESCRIPTION_RESET =
-			"Do you want to restore all of the default values?";
+			"要恢复所有默认值吗？";
 
-		public const string OVERRIDE_TRAITS = "Allow Forced/Blocked Traits";
+		public const string OVERRIDE_TRAITS = "允许强制/禁用特质";
 
 		public const string OverrideTraits = "OverrideTraits";
 		public const string Trait = "Trait";

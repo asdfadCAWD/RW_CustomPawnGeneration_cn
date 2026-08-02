@@ -7,22 +7,22 @@ namespace RW_CustomPawnGeneration
 	{
 		public static string[] COMBO_BOOL = new string[]
 		{
-				"Disabled",
-				"Enabled"
+				"已禁用",
+				"已启用"
 		};
 
 		public static string[] COMBO_GLOBAL_BOOL = new string[]
 		{
-				"Use Global Config",
-				"Disabled",
-				"Enabled"
+				"使用全局配置",
+				"已禁用",
+				"已启用"
 		};
 
-		public const string GENDER = "Gender";
-		public const string AGE = "Age";
-		public const string BODY = "Body";
-		public const string TRAITS = "Traits";
-		public const string HEDIFFS = "Health Conditions";
+		public const string GENDER = "性别";
+		public const string AGE = "年龄";
+		public const string BODY = "体型";
+		public const string TRAITS = "特质";
+		public const string HEDIFFS = "健康状况";
 
 		public override Vector2 InitialSize
 		{

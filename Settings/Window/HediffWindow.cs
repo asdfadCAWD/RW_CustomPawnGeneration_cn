@@ -5,7 +5,7 @@ namespace RW_CustomPawnGeneration
 {
 	public class HediffWindow : BaseWindow
 	{
-		public const string NO_BODY_PART = "No Body Part";
+		public const string NO_BODY_PART = "无身体部位";
 
 		public override Vector2 InitialSize
 		{

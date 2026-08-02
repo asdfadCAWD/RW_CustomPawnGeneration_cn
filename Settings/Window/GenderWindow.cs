@@ -6,28 +6,28 @@ namespace RW_CustomPawnGeneration
 	public class GenderWindow : BaseWindow
 	{
 		public const string DESCRIPTION_SEPARATE_GENDER =
-			"If enabled, this will separate the stats for male and female.";
+			"启用后，将为男性和女性分开统计数据。";
 		public const string DESCRIPTION_OVERRIDE_GENDER =
-			"If enabled, allows you to set which gender is the most frequent.";
+			"启用后，允许你设置哪种性别出现频率更高。";
 		public const string DESCRIPTION_UNFORCED_GENDER =
-			"Some pawns have a 'forced' gender " +
-			"(PawnGenerationRequest.FixedGender) when being generated " +
-			"(backstory-related or generated as another pawn's father/mother). " +
-			"Enabling this will ignore it. " +
-			"May cause minor bugs (single fathers/mothers), " +
-			"but not game-breaking.";
+			"部分角色在生成时具有\"强制\"性别" +
+			"（PawnGenerationRequest.FixedGender）" +
+			"（与背景故事相关或作为另一个角色的父亲/母亲生成）。" +
+			"启用此选项将忽略它。" +
+			"可能导致一些小问题（单亲父亲/母亲），" +
+			"但不会影响游戏运行。";
 		public const string DESCRIPTION_MODIFY_AGGRESSIVELY =
-			"When enabled, " +
-			"some errors caused by a change in gender will be ignored. " +
-			"For mod compatibility, it is recommended that this is enabled.";
+			"启用后，" +
+			"由性别变更引起的一些错误将被忽略。" +
+			"为保证模组兼容性，建议启用此选项。";
 
-		public const string SEPARATE_GENDER = "Separate Gender Stats";
-		public const string OVERRIDE_GENDER = "Override Gender Frequency";
-		public const string UNFORCED_GENDER = "Override Forced Gender";
-		public const string MODIFY_AGGRESSIVELY = "Modify Aggressively";
+		public const string SEPARATE_GENDER = "分开性别统计";
+		public const string OVERRIDE_GENDER = "覆盖性别频率";
+		public const string UNFORCED_GENDER = "覆盖强制性别";
+		public const string MODIFY_AGGRESSIVELY = "激进修改模式";
 
-		public const string MALE = "Male";
-		public const string FEMALE = "Female";
+		public const string MALE = "男性";
+		public const string FEMALE = "女性";
 
 		public const string SeparateGender = "SeparateGender";
 		public const string OverrideGender = "OverrideGender";

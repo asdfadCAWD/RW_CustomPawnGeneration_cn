@@ -9,9 +9,9 @@ namespace RW_CustomPawnGeneration
 	public class CopyWindow : BaseWindow
 	{
 		public const string DESCRIPTION =
-			"* Does not copy traits and health conditions.";
+			"* 不会复制特质和健康状况。";
 
-		public const string APPLY = "Apply";
+		public const string APPLY = "应用";
 
 		public HashSet<ThingDef> selected = new HashSet<ThingDef>();
 

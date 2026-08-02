@@ -7,15 +7,15 @@ namespace RW_CustomPawnGeneration
 	public class BodyWindow : BaseWindow
 	{
 		public const string DESCRIPTION_BODY_FIX =
-			"Some backstories will give pawns average body of the opposite gender. " +
-			"Enabling this will disable it.";
+			"部分背景故事会赋予角色异性平均体型。" +
+			"启用此选项将禁用它。";
 		public const string DESCRIPTION_FILTER_BODY =
-			"When enabled, allows you to disable body types. " +
-			"Body types that are not checked will be disabled. " +
-			"There should be at least 1 body type. " +
-			"This only applies to humans.";
+			"启用后，允许你禁用体型。" +
+			"未勾选的体型将被禁用。" +
+			"至少需要保留1种体型。" +
+			"仅适用于人类。";
 
-		public const string FILTER_BODY = "Filter Body Types";
+		public const string FILTER_BODY = "过滤体型";
 		public const string FilterBody = "FilterBody";
 
 		public override Vector2 InitialSize
