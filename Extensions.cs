@@ -60,8 +60,8 @@ namespace RW_CustomPawnGeneration
 			}
 
 			Log.Warning(
-				"[CustomPawnGeneration] A pawn's body type was not filtered properly! " +
-				"You may be blocking too many body types."
+				"[CustomPawnGeneration] 角色的体型未被正确过滤！" +
+				"你可能禁用了过多的体型。"
 			);
 		}
 
